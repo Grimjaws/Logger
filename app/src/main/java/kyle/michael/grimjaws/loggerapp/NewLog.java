@@ -6,6 +6,7 @@ package kyle.michael.grimjaws.loggerapp;
 
 import android.app.Activity;
 import android.app.DatePickerDialog;
+import android.app.DialogFragment;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
@@ -36,5 +37,10 @@ public class NewLog extends Activity {
         // Inflate the menu; this adds items to the action bar if it is present.
         //getMenuInflater().inflate(R.menu.menu_main, menu);
         return true;
+    }
+
+    public void showStartTimePicker(View view) {
+        DialogFragment newFragment = new TimePickerFragment();
+        newFragment.show(getFragmentManager().beginTransaction(), "timePicker");
     }
 }

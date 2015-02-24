@@ -126,8 +126,8 @@
             android:hint="@string/sampleDistance"
             android:id="@+id/textView12"
             android:layout_alignTop="@+id/distanceText"
-            android:layout_alignLeft="@+id/textView11"
-            android:layout_alignStart="@+id/textView11"
+            android:layout_alignLeft="@id/dateButton"
+            android:layout_alignStart="@id/dateButton"
             android:inputType="number" />
 
         <Button
@@ -136,7 +136,8 @@
             android:id="@+id/textView13"
             android:layout_alignTop="@+id/startTimeText"
             android:layout_alignLeft="@+id/textView12"
-            android:layout_alignStart="@+id/textView12" />
+            android:layout_alignStart="@+id/textView12"
+            android:onClick="showStartTimePicker"/>
 
         <EditText
             android:layout_width="wrap_content"
