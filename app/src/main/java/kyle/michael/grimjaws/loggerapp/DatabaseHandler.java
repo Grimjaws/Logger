@@ -7,7 +7,6 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
 import java.util.ArrayList;
-import java.util.Date;import kyle.michael.grimjaws.loggerapp.Log;
 
 /**
  * Created by Kyle on 9/2/2014.
@@ -19,7 +18,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
 
     private static final String DATABASE_NAME = "logManager";
 
-    private static final String TABLE_LOGS = "logs";
+    public static final String TABLE_LOGS = "logs";
 
     private static final String KEY_ID = "id";
     private static final String KEY_TITLE = "title";
@@ -85,12 +84,12 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     }
 
     // Getting all logs
-    public ArrayList<Log> getLogs() {
+    public Cursor getLogs() {
         SQLiteDatabase db = this.getReadableDatabase();
         Cursor cursor = db.query(TABLE_LOGS, new String[] { KEY_ID, KEY_TITLE, KEY_DESCRIPTION, KEY_DISTANCE,
                         KEY_START_TIME, KEY_END_TIME, KEY_TOTAL_TIME, KEY_PACE}, null,
                 null, null, null, null, null); // TODO order properly :)
-        ArrayList<Log> logs = new ArrayList<Log>();
+        /*ArrayList<Log> logs = new ArrayList<Log>();
         if (cursor.moveToFirst()) {
             do {
                 Log log = new Log(Integer.parseInt(cursor.getString(0)),
@@ -100,7 +99,8 @@ public class DatabaseHandler extends SQLiteOpenHelper {
                 logs.add(log);
             } while (cursor.moveToNext());
         }
-        return logs;
+        return logs;*/
+        return cursor;
     }
 
 

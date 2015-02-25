@@ -1,18 +1,31 @@
 package kyle.michael.grimjaws.loggerapp;
 
+import android.app.Activity;
+import android.app.LoaderManager;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
+import android.content.Loader;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.ListView;
+import android.widget.RelativeLayout;
+import android.widget.SimpleCursorAdapter;
 
 
-public class MainActivity extends ActionBarActivity {
+public class MainActivity extends Activity implements LoaderManager.LoaderCallbacks<Cursor> {
+
+    private static final int LOG_LOADER = 0;
+    SimpleCursorAdapter logAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        getLoaderManager().initLoader(LOG_LOADER, null, this);
+        ListView logList = (ListView) findViewById(R.id.list_view);
+        logAdapter = new SimpleCursorAdapter(this, R.layout.list_item_layout, null, null, null, 0);
+        logList.setAdapter(logAdapter);
     }
 
 
@@ -38,5 +51,24 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public Loader<Cursor> onCreateLoader(int id, Bundle args) {
+        switch (id) {
+            case LOG_LOADER:
+                return new LogCursorLoader(this);
+        }
+        return null;
+    }
+
+    @Override
+    public void onLoadFinished(Loader<Cursor> loader, Cursor data) {
+        logAdapter.changeCursor(data);
+    }
+
+    @Override
+    public void onLoaderReset(Loader<Cursor> loader) {
+        logAdapter.changeCursor(null);
     }
 }

@@ -137,7 +137,10 @@
             android:layout_alignTop="@+id/startTimeText"
             android:layout_alignLeft="@+id/textView12"
             android:layout_alignStart="@+id/textView12"
-            android:onClick="showStartTimePicker"/>
+            android:onClick="showStartTimePicker"
+            android:layout_above="@+id/textView14"
+            android:layout_alignRight="@+id/dateButton"
+            android:layout_alignEnd="@+id/dateButton" />
 
         <EditText
             android:layout_width="wrap_content"
