@@ -86,7 +86,7 @@ public class DatabaseHandler extends SQLiteOpenHelper {
     // Getting all logs
     public Cursor getLogs() {
         SQLiteDatabase db = this.getReadableDatabase();
-        Cursor cursor = db.query(TABLE_LOGS, new String[] { KEY_ID, KEY_TITLE, KEY_DESCRIPTION, KEY_DISTANCE,
+        return db.query(TABLE_LOGS, new String[] { KEY_ID, KEY_TITLE, KEY_DESCRIPTION, KEY_DISTANCE,
                         KEY_START_TIME, KEY_END_TIME, KEY_TOTAL_TIME, KEY_PACE}, null,
                 null, null, null, null, null); // TODO order properly :)
         /*ArrayList<Log> logs = new ArrayList<Log>();
@@ -100,7 +100,6 @@ public class DatabaseHandler extends SQLiteOpenHelper {
             } while (cursor.moveToNext());
         }
         return logs;*/
-        return cursor;
     }
 
 
